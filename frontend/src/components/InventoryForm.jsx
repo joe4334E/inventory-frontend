@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { isValidPrice } from '../utils/priceutils';
 import Swal from 'sweetalert2';
 
 const InventoryForm = ({ item, onSave, onCancel }) => {
@@ -7,13 +8,6 @@ const InventoryForm = ({ item, onSave, onCancel }) => {
   useEffect(() => {
     setFormData({ ...item });
   }, [item]);
-
-  // Función para validar el precio
-  const isValidPrice = (price) => {
-    // Validar si el precio es un número y mayor que 0
-    const validPrice = parseFloat(price.replace(/[^\d.-]/g, ''));
-    return !isNaN(validPrice) && validPrice > 0;
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +20,6 @@ const InventoryForm = ({ item, onSave, onCancel }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validar precio antes de guardar
     if (!isValidPrice(formData.price)) {
       Swal.fire({
         icon: 'error',
@@ -48,6 +41,7 @@ const InventoryForm = ({ item, onSave, onCancel }) => {
       <h2 className="text-xl font-semibold text-center text-gray-700">
         {item.id === 0 ? 'Agregar Producto' : 'Editar Producto'}
       </h2>
+
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-600">Nombre</label>
         <input
@@ -55,9 +49,10 @@ const InventoryForm = ({ item, onSave, onCancel }) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg shadow-sm"
+          className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
+
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-600">Descripción</label>
         <input
@@ -65,31 +60,33 @@ const InventoryForm = ({ item, onSave, onCancel }) => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg shadow-sm"
+          className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
+
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-600">Precio</label>
         <input
-          type="text" // Cambiar a texto para permitir valores como "$20.00" o "20"
+          type="text"
           name="price"
           value={formData.price}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg shadow-sm"
+          className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Ejemplo: 20, 20.50, $15"
         />
       </div>
-      <div className="flex justify-between">
+
+      <div className="flex justify-between space-x-4">
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-all duration-200"
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-700 transition-all duration-200"
         >
           Guardar
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-all duration-200"
+          className="bg-gray-500 text-white py-2 px-4 rounded-lg w-full hover:bg-gray-700 transition-all duration-200"
         >
           Cancelar
         </button>

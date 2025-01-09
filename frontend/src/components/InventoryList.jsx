@@ -3,8 +3,8 @@ import { Edit, Trash2 } from 'lucide-react';
 
 const InventoryList = ({ inventory, onEdit, onDelete }) => {
   return (
-    <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-      <table className="min-w-full">
+    <div className="overflow-x-auto bg-white shadow-md rounded-lg mt-4">
+      <table className="min-w-full table-auto">
         <thead className="bg-gray-200">
           <tr>
             <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Nombre</th>
@@ -15,7 +15,6 @@ const InventoryList = ({ inventory, onEdit, onDelete }) => {
         </thead>
         <tbody className="text-sm">
           {inventory.map((item) => {
-            // Convertir item.price a un número, y si no es un número válido, poner 0.
             const price = parseFloat(item.price);
             const validPrice = isNaN(price) ? 0 : price;
 
