@@ -1,5 +1,4 @@
 const API_URL = 'http://localhost:3003/api/products';
-
 export const api = {
   getInventory: async () => {
     const response = await fetch(API_URL);
@@ -28,6 +27,8 @@ export const api = {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
     });
-    if (!response.ok) throw new Error('Error al eliminar producto');
+    if (!response.ok) throw new Error('Error al eliminar tipo de producto');
   },
 };
+
+ 

@@ -5,7 +5,7 @@ import InventoryList from './components/InventoryList';
 import InventoryForm from './components/InventoryForm';
 import { useInventory } from './hooks/useInventory';
 
-const App = () => {
+const Modal = () => {
   const {
     inventory,
     loading,
@@ -40,7 +40,7 @@ const App = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  if (error && error !== 'No products found') {
+  if (error && error !== 'No tines productos') {
     return <div>Error: {error}</div>;
   }
 
@@ -88,4 +88,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Modal;

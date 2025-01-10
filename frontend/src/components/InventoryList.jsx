@@ -10,6 +10,7 @@ const InventoryList = ({ inventory, onEdit, onDelete }) => {
             <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Nombre</th>
             <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Cantidad</th>
             <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Precio</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Tipo</th>
             <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Acciones</th>
           </tr>
         </thead>
@@ -23,6 +24,8 @@ const InventoryList = ({ inventory, onEdit, onDelete }) => {
                 <td className="px-6 py-4">{item.name}</td>
                 <td className="px-6 py-4">{item.quantity}</td>
                 <td className="px-6 py-4">${validPrice.toFixed(2)}</td>
+                <td className="px-6 py-4">${item.type}</td>
+                {/* Aqui debe entrar el ultimo modulo del tipo de producto*/}
                 <td className="px-6 py-4">
                   <button
                     onClick={() => onEdit(item)}
